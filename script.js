@@ -2,15 +2,8 @@ const display = document.querySelector('#display');
 
 const inputElem = document.querySelectorAll("input:not(#display,.clear, .delete, .equal)");
 
-
-display.value = "";
-
 //For accessing the value of the button clicked
-inputElem.forEach(input=>{
-    input.addEventListener('click', () =>{
-        display.value += input.value;
-    })
-})
+inputElem.forEach(input => input.addEventListener('click', () => display.value += input.value));
 
 //clearing the value of display
 document.querySelector('.clear').addEventListener('click', ()=>display.value = "");
@@ -19,8 +12,7 @@ document.querySelector('.clear').addEventListener('click', ()=>display.value = "
 document.querySelector('.delete').addEventListener('click', ()=>display.value = display.value.toString().slice(0, -1));
 
 //Computing the input values
+// eval() is used for computing the arithmatic operations
 document.querySelector('.equal').addEventListener('click', ()=>{
-   
-    // eval() is used for computing the arithmatic operations
-    display.value = eval(display.value);
-})
+    if(display.value.length) display.value = eval(display.value);
+});
